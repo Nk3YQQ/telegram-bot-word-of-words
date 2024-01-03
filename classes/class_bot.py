@@ -1,6 +1,8 @@
+from typing import Any
+
 import telebot
 
 
 class Bot(telebot.TeleBot):
-    def __init__(self, api_key, *args, **kwargs):
+    def __init__(self, api_key: str | None, *args: Any, **kwargs: Any) -> None:
         super().__init__(api_key, *args, **kwargs)
