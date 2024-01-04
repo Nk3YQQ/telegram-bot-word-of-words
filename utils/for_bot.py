@@ -11,6 +11,9 @@ from saver import JSONSaver
 
 
 def create_panel(message: Any, bot: Bot, bot_message: str, *bottom_names: Any) -> None:
+    """
+    Функция отвечает за создание панели кнопок для пользователя
+    """
     markup = types.ReplyKeyboardMarkup(resize_keyboard=True)
     for bottom_name in bottom_names:
         bottom = types.KeyboardButton(bottom_name)
@@ -20,12 +23,18 @@ def create_panel(message: Any, bot: Bot, bot_message: str, *bottom_names: Any) -
 
 
 def create_next_step(bot: Bot, message: Any, next_handler: Any) -> None:
+    """
+    Функция отвечает за переход к следующему обработчику
+    """
     bot.register_next_step_handler(message, next_handler)
 
 
 def check_user_word(
     user_word: str, player: Player, bot: Bot, message: Any, process_word: Any, word_info: BasicWord, menu: Any
 ) -> None:
+    """
+    Функция отвечает за проверку введённого пользователем слова
+    """
     if user_word == "стоп":
         create_panel(message, bot, f"Игра заверена. Количество угаданных слов - {len(player.user_words)}.", "Меню")
         saver(player.name, len(player.user_words), JSON_PATH)
@@ -48,6 +57,9 @@ def check_user_word(
 
 
 def info_message() -> str:
+    """
+    Функция отвечает за возврат сообщения в разделе "Помощь" при её вызове
+    """
     return (
         'Для того, чтобы начать игру, нужно нажать на кнопку "Начать игру". Правила игры простые - Вам нужно '
         "будет угадать как можно больше слов. Если Вам надоест угадывать слова, то Вы можете начать на кнопку "
@@ -57,10 +69,16 @@ def info_message() -> str:
 
 
 def saver(player_name: str, word_count: int, filepath: Path) -> None:
+    """
+    Функция отвечает за сохранение результата в json-файл
+    """
     json_saver = JSONSaver()
     json_saver.save_result(player_name, word_count, filepath)
 
 
 def getter(player_name: str, filepath: Path) -> Any:
+    """
+    Функция отвечает за вывод лучшего результата пользователя из json-файла
+    """
     json_saver = JSONSaver()
-    return json_saver.get_top_five_results(player_name, filepath)
+    return json_saver.get_top_result(player_name, filepath)
