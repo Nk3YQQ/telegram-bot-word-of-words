@@ -23,5 +23,7 @@ class BasicWord:
         return len(self.subwords)
 
     def __str__(self) -> str:
-        return f"""Составьте {self.count_subwords()} слов из слова {self.word.upper()}
-Слова должны быть не короче {len(min(self.subwords, key=len))} букв"""
+        return (
+            f"Составьте {self.count_subwords()} слов из слова {self.word.upper()}. "
+            f"Слова должны быть не короче {len(min(self.subwords, key=len))} букв"
+        )
