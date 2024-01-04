@@ -34,5 +34,4 @@ class Player:
         return user_word in Player.user_words
 
     def __str__(self) -> str:
-        return f"""Имя пользователя: {self.name}
-Использованные слова пользователя: {', '.join(Player.user_words)}"""
+        return f"Имя пользователя: {self.name}. Использованные слова пользователя: {', '.join(Player.user_words)}"
