@@ -9,6 +9,9 @@ readme = "README.md"
 python = "^3.11"
 requests = "^2.31.0"
 pytelegrambotapi = "^4.14.1"
+python-dotenv = "^1.0.0"
+telebot = "^0.0.5"
+types-requests = "^2.31.0.20231231"
 
 
 [tool.poetry.group.lint.dependencies]
